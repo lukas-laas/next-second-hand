@@ -1,10 +1,7 @@
-import Image from "next/image";
-import { getProducts } from "./lib/actions";
+import { getProducts } from "@/server/queries";
 
 export default async function Home() {
   const products = await getProducts();
-
-  console.log(products);
   return (
     <main>
       <h1>Products</h1>

@@ -10,12 +10,12 @@ import {
 export const createTable = pgTableCreator((name) => `next_second_hand_${name}`);
 
 export const Products = createTable("products", {
-  id: uuid("id").notNull(),
+  id: uuid("id").notNull().primaryKey().defaultRandom(),
   title: text("title").notNull(),
   price: decimal("price").notNull(),
   originalPrice: decimal("original_price").notNull(),
-  createdAt: timestamp("created_at").notNull(),
-  updatedAt: timestamp("updated_at").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
   condition: text("contiditon"),
   age: integer("age").notNull(),
 });

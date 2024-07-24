@@ -1,3 +1,5 @@
+"use server";
+
 type Product = {
   id: string;
   title: string;

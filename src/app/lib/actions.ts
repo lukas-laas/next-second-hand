@@ -41,6 +41,9 @@ const mockProducts: Product[] = [
   },
 ];
 
-export const getProducts = async (): Promise<Product[]> => {
-  return mockProducts;
+export const getProducts = async () => {
+  const products = mockProducts.map((product) => {
+    return { id: product.id, title: product.title, price: product.price };
+  });
+  return products;
 };

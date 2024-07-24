@@ -7,6 +7,10 @@ export default async function Home() {
   console.log(products);
   return (
     <main>
+      <nav>
+        <div>Schmecond Hand</div>
+        <button>Add</button>
+      </nav>
       <h1>Products</h1>
       <ul>
         {products.map((product) => {

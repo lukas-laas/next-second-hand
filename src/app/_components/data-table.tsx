@@ -15,18 +15,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import Link from "next/link";
+
 import { useRouter } from "next/navigation";
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-}
+// interface DataTableProps<TData, TValue> {
+//   columns: ColumnDef<TData, TValue>[];
+//   data: TData[];
+// }
 
-export function DataTable<TData, TValue>({
-  columns,
-  data,
-}: DataTableProps<TData, TValue>) {
+export function DataTable({ columns, data }) {
   const table = useReactTable({
     data,
     columns,
@@ -48,7 +45,7 @@ export function DataTable<TData, TValue>({
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                   </TableHead>
                 );
@@ -57,19 +54,15 @@ export function DataTable<TData, TValue>({
           ))}
         </TableHeader>
         <TableBody>
-          {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row, index) => (
+          {data?.length ? (
+            data.map((product) => (
               <TableRow
                 className="cursor-pointer"
-                onClick={() => push(`/${data[index].id}`)}
-                key={row.id}
-                data-state={row.getIsSelected() && "selected"}
+                onClick={() => push(`/${product.id}`)}
+                key={product.id}
               >
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
+                <TableCell>{product.title}</TableCell>
+                <TableCell>{product.price}</TableCell>
               </TableRow>
             ))
           ) : (

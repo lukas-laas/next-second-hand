@@ -15,6 +15,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -30,6 +32,8 @@ export function DataTable<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
+
+  const { push } = useRouter();
 
   return (
     <div className="rounded-md border">
@@ -54,8 +58,10 @@ export function DataTable<TData, TValue>({
         </TableHeader>
         <TableBody>
           {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row) => (
+            table.getRowModel().rows.map((row, index) => (
               <TableRow
+                className="cursor-pointer"
+                onClick={() => push(`/${data[index].id}`)}
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
               >

@@ -10,14 +10,30 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { z } from "zod";
 import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const formSchema = z.object({
+  title: z.string().min(1).max(50),
+  category: z.string(), //Todo: select input
+  age: z.coerce.number().int(),
+  price: z.coerce.number().nonnegative(),
+  condition: z.string(), //Todo: select input
+});
 
 export default function AddForm() {
-  const form = useForm();
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+  });
+
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    console.log(values);
+  };
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(() => console.log("SUBMIT"))}
+        onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-8 text-black"
       >
         <FormField
@@ -53,7 +69,7 @@ export default function AddForm() {
             <FormItem>
               <FormLabel>Age</FormLabel>
               <FormControl>
-                <Input placeholder="Age" {...field} />
+                <Input type="number" placeholder="Age" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -66,7 +82,7 @@ export default function AddForm() {
             <FormItem>
               <FormLabel>Original Price</FormLabel>
               <FormControl>
-                <Input placeholder="Original price" {...field} />
+                <Input type="number" placeholder="Original price" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

@@ -13,6 +13,7 @@ import {
 import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { addProductAction } from "../lib/add-product";
 
 const formSchema = z.object({
   title: z.string().min(1).max(50),
@@ -22,13 +23,15 @@ const formSchema = z.object({
   condition: z.string(), //Todo: select input
 });
 
+export type AddForm = z.infer<typeof formSchema>;
+
 export default function AddForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<AddForm>({
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = (values: AddForm) => {
+    addProductAction(values);
   };
   return (
     <Form {...form}>

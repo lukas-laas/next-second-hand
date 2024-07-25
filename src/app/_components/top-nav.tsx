@@ -2,15 +2,16 @@ import Image from "next/image";
 
 export const TopNav = () => {
   return (
-    <nav className="bg-gray-800 flex justify-between items-center p-2">
+    <nav className="flex justify-between items-center px-4 w-full">
       <Image
         src="/logo-shmecond.png"
         width={100}
         height={100}
         alt="Shmecond Hand Logo"
       />
-      <div>Schmecond Hand</div>
-      <button className="rounded-md p-2 hover:bg-gray-700 ">Add</button>
+      <button className="rounded-md bg-rose-600 hover:bg-rose-400 p-2 transition-colors">
+        Add product
+      </button>
     </nav>
   );
 };

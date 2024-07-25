@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="text-white bg-gray-700 text-center">
+      <body className="flex flex-col items-center max-w-5xl mx-auto">
         <TopNav />
         {children}
       </body>

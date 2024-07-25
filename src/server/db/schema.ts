@@ -17,5 +17,6 @@ export const Products = createTable("products", {
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
   condition: text("contiditon"),
+  category: text("category"),
   age: integer("age").notNull(),
 });

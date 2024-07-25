@@ -13,13 +13,13 @@ import {
 import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { addProductAction } from "../lib/add-product";
+import { addProductAction } from "../../lib/add-product";
 
 const formSchema = z.object({
   title: z.string().min(1).max(50),
   category: z.string(), //Todo: select input
   age: z.coerce.number().int(),
-  price: z.coerce.number().nonnegative(),
+  originalPrice: z.string(),
   condition: z.string(), //Todo: select input
 });
 

@@ -18,9 +18,7 @@ export const getProducts = async () => {
 type NewProduct = typeof Products.$inferInsert;
 export const addProduct = async (formData: NewProduct) => {
   try {
-    console.log("call db");
-    await db.insert(Products).values(formData);
-    console.log(formData);
+    await db.insert(Products).values(formData).returning();
   } catch (error) {
     throw new Error("Failed to add product");
   }

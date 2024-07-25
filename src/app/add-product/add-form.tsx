@@ -80,7 +80,7 @@ export default function AddForm() {
         />
         <FormField
           control={form.control}
-          name="price"
+          name="originalPrice"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Original Price</FormLabel>

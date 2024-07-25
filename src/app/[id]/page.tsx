@@ -6,19 +6,26 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { getProductAction } from "@/lib/get-product";
 
-export default function ProductDetailPage() {
+export default async function ProductDetailPage({
+  params: { id: productId },
+}: any) {
+  const product = await getProductAction(productId);
+  if (!product) {
+    return "Loading product";
+  }
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Product Title</CardTitle>
+        <CardTitle>{product.title}</CardTitle>
         {/* <CardDescription>Card Description</CardDescription> */}
       </CardHeader>
       <CardContent>
-        <p>Price</p>
-        <p>Original price</p>
-        <p>Condition</p>
-        <p>Category</p>
+        <p>{product.price}</p>
+        <p>{product.originalPrice}</p>
+        <p>{product.condition}</p>
+        <p>{product.category}</p>
       </CardContent>
       <CardFooter>
         <p>Card Footer</p>

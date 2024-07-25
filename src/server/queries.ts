@@ -14,6 +14,17 @@ export const getProducts = async () => {
     throw new Error("Failed to fetch Products");
   }
 };
+export const getProduct = async (id: string) => {
+  try {
+    const product = await db.query.Products.findFirst({
+      where: (model, { eq }) => eq(model.id, id),
+    });
+
+    return product;
+  } catch (error) {
+    throw new Error("Failed to fetch Product");
+  }
+};
 
 type NewProduct = typeof Products.$inferInsert;
 export const addProduct = async (formData: NewProduct) => {

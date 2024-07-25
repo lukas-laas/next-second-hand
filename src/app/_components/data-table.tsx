@@ -18,12 +18,7 @@ import {
 
 import { useRouter } from "next/navigation";
 
-// interface DataTableProps<TData, TValue> {
-//   columns: ColumnDef<TData, TValue>[];
-//   data: TData[];
-// }
-
-export function DataTable({ columns, data }) {
+export function DataTable({ columns, data }: any) {
   const table = useReactTable({
     data,
     columns,
@@ -45,7 +40,7 @@ export function DataTable({ columns, data }) {
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
-                          header.getContext(),
+                          header.getContext()
                         )}
                   </TableHead>
                 );
@@ -55,7 +50,7 @@ export function DataTable({ columns, data }) {
         </TableHeader>
         <TableBody>
           {data?.length ? (
-            data.map((product) => (
+            data.map((product: any) => (
               <TableRow
                 className="cursor-pointer"
                 onClick={() => push(`/${product.id}`)}

@@ -14,6 +14,8 @@ import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { addProductAction } from "../../lib/add-product";
+import Link from "next/link";
+import { redirect } from "next/navigation";
 
 const formSchema = z.object({
   title: z.string().min(1).max(50),
@@ -31,7 +33,12 @@ export default function AddForm() {
   });
 
   const onSubmit = (values: AddForm) => {
-    addProductAction(values);
+    try {
+      addProductAction(values);
+      redirect("/");
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <Form {...form}>
@@ -104,7 +111,12 @@ export default function AddForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <div className="flex justify-between ">
+          <Button type="submit">Submit</Button>
+          <Button className="rounded-md bg-rose-600 hover:bg-rose-400 p-2 transition-colors text-white">
+            <Link href={"/"}>Back</Link>
+          </Button>
+        </div>
       </form>
     </Form>
   );

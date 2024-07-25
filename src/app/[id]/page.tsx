@@ -1,5 +1,13 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { getProductAction } from "@/lib/get-product";
+import Link from "next/link";
 
 export default async function ProductDetailPage({
   params: { id: productId },
@@ -31,6 +39,11 @@ export default async function ProductDetailPage({
           {product.originalPrice} sek
         </p>
       </CardContent>
+      <CardFooter>
+        <Button className="rounded-md bg-rose-600 hover:bg-rose-400 p-2 transition-colors text-white">
+          <Link href={"/"}>Back</Link>
+        </Button>
+      </CardFooter>
     </Card>
   );
 }

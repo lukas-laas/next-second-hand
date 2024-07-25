@@ -14,7 +14,7 @@ export const TopNav = () => {
       </Link>
       <Link
         href={"/add-product"}
-        className="rounded-md bg-rose-600 hover:bg-rose-400 p-2 transition-colors"
+        className="rounded-md bg-rose-600 hover:bg-rose-400 p-2 transition-colors text-white"
       >
         Add product
       </Link>

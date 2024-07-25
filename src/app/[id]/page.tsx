@@ -1,11 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getProductAction } from "@/lib/get-product";
 
 export default async function ProductDetailPage({
@@ -16,20 +9,28 @@ export default async function ProductDetailPage({
     return "Loading product";
   }
   return (
-    <Card>
+    <Card className="w-full max-w-80 h-60">
       <CardHeader>
         <CardTitle>{product.title}</CardTitle>
-        {/* <CardDescription>Card Description</CardDescription> */}
       </CardHeader>
       <CardContent>
-        <p>{product.price}</p>
-        <p>{product.originalPrice}</p>
-        <p>{product.condition}</p>
-        <p>{product.category}</p>
+        <p>
+          <strong>Category: </strong>
+          {product.category}
+        </p>
+        <p>
+          <strong>Condition: </strong>
+          {product.condition}
+        </p>
+        <p>
+          <strong>Price: </strong>
+          {product.price} sek
+        </p>
+        <p>
+          <strong>Original price: </strong>
+          {product.originalPrice} sek
+        </p>
       </CardContent>
-      <CardFooter>
-        <p>Card Footer</p>
-      </CardFooter>
     </Card>
   );
 }

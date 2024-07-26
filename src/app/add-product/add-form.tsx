@@ -35,7 +35,6 @@ export default function AddForm() {
   const onSubmit = (values: AddForm) => {
     try {
       addProductAction(values);
-      redirect("/");
     } catch (error) {
       console.error(error);
     }

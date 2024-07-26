@@ -14,7 +14,7 @@ export default async function ProductDetailPage({
 }: any) {
   const product = await getProductAction(productId);
   if (!product) {
-    return "Loading product";
+    return "Not found.";
   }
   return (
     <Card className="w-full max-w-80 h-60">

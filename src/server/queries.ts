@@ -14,6 +14,7 @@ export const getProducts = async () => {
     throw new Error("Failed to fetch Products");
   }
 };
+
 export const getProduct = async (id: string) => {
   try {
     const product = await db.query.Products.findFirst({
